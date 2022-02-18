@@ -4,7 +4,8 @@
 *.exe
 *.out
 *.app
-DataStore
+bin
+obj
 
 .vscode
 .DS_Store

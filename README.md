@@ -8,7 +8,6 @@ To implement a local storage class which writes to database(`sqlite3`) supplemen
 - `LRUCache`: Handles read/write, cache miss and cache hit
 - `LRUCacheTest`: For integration testing
 
-
 ## Build and run executable
 ### Prerequistes:
 - Install sqlite3
@@ -17,4 +16,4 @@ To implement a local storage class which writes to database(`sqlite3`) supplemen
 - Clone repository
 - cd `<cloned repository>`
 - `make`  
-- `./DataStore`
+- `./bin/data-store`

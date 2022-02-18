@@ -5,17 +5,17 @@
  */
 std::vector<DataEntity> LRUCacheTest::testExecuterUtil(int cacheSize, std::vector<std::vector<std::string>> testData) {
     std::vector<DataEntity> result;
-    LRUCache* cache = new LRUCache(cacheSize);
+    LRUCache cache(cacheSize);
 
     for (std::vector<std::string> currentTest :testData) {
         // For Get scenario
         if (currentTest.size() == 2 && currentTest[0] == "GET") {
             std::string entity_id = currentTest[1];
-            DataEntity actualOutcome = cache->Get(entity_id);
+            DataEntity actualOutcome = cache.Get(entity_id);
             result.push_back(actualOutcome);
         } // For Put scenario
         else if (currentTest.size() == 3 && currentTest[0] == "PUT") {
-            cache->Put(DataEntity(currentTest[1], currentTest[2]));
+            cache.Put(DataEntity(currentTest[1], currentTest[2]));
             result.push_back(emptyDataEntity);
         } else {
             throw std::invalid_argument( "Invalid test case" );
@@ -92,16 +92,16 @@ std::vector<std::vector<std::string>> testData3 = {
  */
 void LRUCacheTest::testPut2Get2FromDB() {
     std::cout<< "Running test 3" << std::endl;
-    LRUCache* cache = new LRUCache(2);
+    LRUCache cache(2);
     std::string entity_id = "UUID1";
-    cache->Put(DataEntity(entity_id, "Jon"));
+    cache.Put(DataEntity(entity_id, "Jon"));
 
-    DataEntity existingObject = cache->Get(entity_id);
+    DataEntity existingObject = cache.Get(entity_id);
     existingObject.entity_name = "Alice";
     assert(1 == existingObject.version);
 
-    cache->Put(existingObject);
-    DataEntity mutatedObject = cache->Get(entity_id);
+    cache.Put(existingObject);
+    DataEntity mutatedObject = cache.Get(entity_id);
     assert(2 == mutatedObject.version);
 }
 

@@ -1,4 +1,4 @@
-#include "LRUCacheTest.h"
+#include "tests/LRUCacheTest.h"
 
 int main(){
     LRUCacheTest lru_test;

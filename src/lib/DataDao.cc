@@ -8,6 +8,10 @@ DataDao::DataDao(){
 DataDao::~DataDao(){
     DeleteTable();
     sqlite3_close(db);
+    if (instance) {
+        delete instance;
+        instance = nullptr;
+    }
 }
 
 /**
@@ -87,14 +91,14 @@ void DataDao::InsertData(const DataEntity& entity){
     sqlite3_bind_text(res, 2, entity.entity_name.c_str(), strlen(entity.entity_name.c_str()), NULL);
     sqlite3_bind_int(res, 3, entity.version);
 
-    int step = sqlite3_step(res);
+    sqlite3_step(res);
     sqlite3_finalize(res);
 }
 
 
 DataDao *DataDao::instance = 0;
 DataDao* DataDao::GetInstance(){
-    if(! instance)
+    if(!instance)
         instance = new DataDao();
 
     return instance;

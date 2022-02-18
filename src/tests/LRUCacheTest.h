@@ -4,7 +4,7 @@
 #include <assert.h>
 #include <string>
 
-#include "LRUCache.h"
+#include "../lib/LRUCache.h"
 
 class LRUCacheTest {
 public:
